@@ -8,8 +8,12 @@ function App() {
 
   useEffect(()=>{
     axios.get('http://localhost:3001/getJokes').
-      then((response)=>setJokes(response.data)).
-      catch((error)=>console.log(error))
+      then((response)=>{
+        setJokes(response.data)
+      }).
+      catch((error)=>{
+        console.log(error)
+      })
   },[]);
 
   return (
@@ -17,12 +21,12 @@ function App() {
       <h1>Hello World</h1>
       <p>Jokes: {jokes.length}</p>
       {
-        jokes.map((joke)=>{
+        jokes.map((joke,index)=>(
           <div key={joke.id}>
             <h3>{joke.title}</h3>
             <p>{joke.content}</p>
           </div>
-        })
+        ))
       }
     </>
   )
